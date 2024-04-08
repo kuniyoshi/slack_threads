@@ -14,8 +14,10 @@ my $config = Config::Tiny->read( ".config", "utf8" );
 
 my $slack = WebService::Slack::WebApi->new( token => $config->{_}{token} );
 
-my $response = $slack->conversations->history( channel => $config->{_}{channel_id} );
+my $response = $slack->conversations->replies( channel => $config->{_}{channel_id}, ts => "1712490106.038159" );
 p $response;
+
+
 
 
 

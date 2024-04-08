@@ -5,18 +5,17 @@ use strict;
 use warnings;
 use open qw( :utf8 :std );
 use Data::Dumper;
-use Readonly;
-use WebService::Slack::WebApi;
 use DDP;
+use Readonly;
+use Config::Tiny;
+use WebService::Slack::WebApi;
 
-Readonly my $TOKEN => q{};
+my $config = Config::Tiny->read( ".config", "utf8" );
 
-my $slack = WebService::Slack::WebApi->new( token => $TOKEN );
+my $slack = WebService::Slack::WebApi->new( token => $config->{_}{token} );
 
-Readonly my $CHANNEL_ID => "";
-
-my $response = $slack->conversations->history( channel => $CHANNEL_ID );
-p $respone;
+my $response = $slack->conversations->history( channel => $config->{_}{channel_id} );
+p $response;
 
 
 
